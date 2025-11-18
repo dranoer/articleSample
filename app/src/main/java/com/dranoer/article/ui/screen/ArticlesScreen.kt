@@ -14,7 +14,7 @@ import com.dranoer.article.ui.component.ArticleItem
 import com.dranoer.article.ui.theme.ArticleTheme
 
 @Composable
-internal fun ArticlesScreen() {
+internal fun ArticlesScreen(navigateToDetail: (String) -> Unit) {
     ArticleTheme {
         Scaffold(
             content = { padding ->
@@ -23,7 +23,7 @@ internal fun ArticlesScreen() {
                         .padding(padding)
                         .fillMaxSize()
                 ) {
-                    ArticleList(emptyList())
+                    ArticleList(articles = emptyList(), onArticleClick = navigateToDetail)
                 }
             })
     }
@@ -31,7 +31,8 @@ internal fun ArticlesScreen() {
 
 @Composable
 private fun ArticleList(
-    articles: List<String>
+    articles: List<String>,
+    onArticleClick: (String) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -39,7 +40,7 @@ private fun ArticleList(
     ) {
         items(articles.size) { index ->
             ArticleItem(
-                onClick = {}
+                onClick = { onArticleClick("1") }
             )
         }
     }
@@ -48,5 +49,5 @@ private fun ArticleList(
 @Preview(showBackground = true)
 @Composable
 private fun ArticleListPreview() {
-    ArticleList(listOf("1", "2", "3"))
+    ArticleList(listOf("1", "2", "3"), {})
 }

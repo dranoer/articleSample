@@ -4,13 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.dranoer.article.ui.screen.ArticlesScreen
+import com.dranoer.article.ui.screen.DetailScreen
 import com.dranoer.article.ui.theme.ArticleTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,29 +20,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ArticleTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                AppScreen()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+private fun AppScreen() {
+    val navController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ArticleTheme {
-        Greeting("Android")
+    NavHost(
+        navController = navController,
+        startDestination = "articles"
+    ) {
+        composable("articles") {
+            ArticlesScreen(
+                navigateToDetail = { navController.navigate("detail/$id") }
+            )
+        }
+        composable("detail/{id}") { backStackEntry ->
+            DetailScreen(
+                onBackClick = { navController.popBackStack() }
+            )
+        }
     }
 }
