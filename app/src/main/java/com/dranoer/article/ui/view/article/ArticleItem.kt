@@ -1,6 +1,7 @@
-package com.dranoer.article.ui.component
+package com.dranoer.article.ui.view.article
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,11 +11,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dranoer.article.ui.model.ArticleUiModel
 
 @Composable
 internal fun ArticleItem(
+    article: ArticleUiModel,
     onClick: () -> Unit
 ) {
     Card(
@@ -25,23 +29,26 @@ internal fun ArticleItem(
         shape = RoundedCornerShape(12.dp)
     ) {
         Column(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Text(
-                text = "title",
+                text = article.title,
                 style = MaterialTheme.typography.titleMedium,
-                maxLines = 1
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
 
             Text(
-                text = "summary",
+                text = article.summary,
                 style = MaterialTheme.typography.bodyMedium,
-                maxLines = 2
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
 
             Text(
-                text = "date",
-                style = MaterialTheme.typography.bodySmall
+                text = article.updatedAt,
+                style = MaterialTheme.typography.bodySmall,
             )
         }
     }
@@ -49,8 +56,14 @@ internal fun ArticleItem(
 
 @Preview(showBackground = true)
 @Composable
-private fun ArticleItemPreview() {
+private fun ArticlePreview() {
     ArticleItem(
+        article = ArticleUiModel(
+            id = "1",
+            title = "title 1",
+            summary = "summary one\nsummary one\nsummary one",
+            updatedAt = "12/12/2022"
+        ),
         onClick = {}
     )
 }
