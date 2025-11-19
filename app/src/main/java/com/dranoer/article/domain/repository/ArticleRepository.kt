@@ -1,6 +1,7 @@
 package com.dranoer.article.domain.repository
 
 import com.dranoer.article.domain.model.Article
+import com.dranoer.article.util.Result
 
 interface ArticleRepository {
 
