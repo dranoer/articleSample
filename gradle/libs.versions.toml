@@ -43,6 +43,7 @@ kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", versio
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlinTest" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
+work-runtime = { module = "androidx.work:work-runtime-ktx", version = "2.11.0" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
