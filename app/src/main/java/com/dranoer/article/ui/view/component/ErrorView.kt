@@ -9,17 +9,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dranoer.article.R
+import com.dranoer.article.ui.theme.ArticleTheme
 
 @Composable
 internal fun ErrorView(
     message: String,
-    onRetryClick: () -> Unit
+    onRetryClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -31,7 +35,7 @@ internal fun ErrorView(
                 textAlign = TextAlign.Center
             )
             Button(onClick = onRetryClick) {
-                Text("Retry")
+                Text(stringResource(R.string.retry))
             }
         }
     }
@@ -40,5 +44,7 @@ internal fun ErrorView(
 @Preview(showBackground = true)
 @Composable
 private fun ErrorViewPreview() {
-    ErrorView(message = "Something went wrong.", onRetryClick = {})
+    ArticleTheme {
+        ErrorView(message = "Something went wrong.", onRetryClick = {})
+    }
 }

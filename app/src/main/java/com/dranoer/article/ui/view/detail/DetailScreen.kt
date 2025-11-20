@@ -15,8 +15,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.dranoer.article.R
+import com.dranoer.article.ui.theme.ArticleTheme
 import com.dranoer.article.ui.view.component.EmptyView
 import com.dranoer.article.ui.view.component.ErrorView
 import com.dranoer.article.ui.view.component.LoadingView
@@ -46,7 +48,8 @@ internal fun DetailScreen(
 private fun ArticleDetail(
     state: DetailUiState,
     onRetryClick: () -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val title = when (state) {
         is DetailUiState.Loaded -> state.title
@@ -61,12 +64,13 @@ private fun ArticleDetail(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             painter = painterResource(R.drawable.ic_back),
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 }
             )
-        }
+        },
+        modifier = modifier
     ) { padding ->
         Column(
             modifier = Modifier
@@ -102,12 +106,14 @@ private fun ArticleDetail(
 @Preview(showBackground = true)
 @Composable
 private fun DetailScreenLoadedPreview() {
-    ArticleDetail(
-        state = DetailUiState.Loaded(
-            title = "Sample article title",
-            contentMarkdown = "# Heading\n\nSome markdown content."
-        ),
-        onRetryClick = {},
-        onBackClick = {}
-    )
+    ArticleTheme {
+        ArticleDetail(
+            state = DetailUiState.Loaded(
+                title = "Sample article title",
+                contentMarkdown = "# Heading\n\nSome markdown content."
+            ),
+            onRetryClick = {},
+            onBackClick = {}
+        )
+    }
 }

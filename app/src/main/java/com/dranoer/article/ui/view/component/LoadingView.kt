@@ -7,11 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.dranoer.article.ui.theme.ArticleTheme
 
 @Composable
-internal fun LoadingView() {
+internal fun LoadingView(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
@@ -21,5 +22,7 @@ internal fun LoadingView() {
 @Preview(showBackground = true)
 @Composable
 private fun LoadingViewPreview() {
-    LoadingView()
+    ArticleTheme {
+        LoadingView()
+    }
 }
