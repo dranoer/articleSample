@@ -4,6 +4,8 @@ import com.dranoer.article.data.remote.ApiService
 import com.dranoer.article.data.remote.MockInterceptor
 import com.dranoer.article.data.repository.ArticleRepositoryImpl
 import com.dranoer.article.domain.repository.ArticleRepository
+import com.dranoer.shared.cache.InMemoryKeyValueCache
+import com.dranoer.shared.cache.KeyValueCache
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -43,5 +45,9 @@ abstract class AppModule {
         @Provides
         fun provideApiService(retrofit: Retrofit): ApiService =
             retrofit.create(ApiService::class.java)
+
+        @Provides
+        @Singleton
+        fun provideKeyValueCache(): KeyValueCache = InMemoryKeyValueCache()
     }
 }
