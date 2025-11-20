@@ -1,3 +1,3 @@
 package com.dranoer.shared
 
-actual fun platform() = "Android"
+actual fun currentTimeMillis(): Long = System.currentTimeMillis()

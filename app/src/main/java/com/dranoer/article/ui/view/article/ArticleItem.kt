@@ -19,10 +19,11 @@ import com.dranoer.article.ui.model.ArticleUiModel
 @Composable
 internal fun ArticleItem(
     article: ArticleUiModel,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .padding(horizontal = 16.dp, vertical = 4.dp)
             .fillMaxWidth()
             .clickable(onClick = onClick),

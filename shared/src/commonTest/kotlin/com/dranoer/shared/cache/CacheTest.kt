@@ -7,7 +7,7 @@ import kotlin.test.assertTrue
 class CacheTest {
 
     @Test
-    fun `entry within TTL is not stale`() {
+    fun `Given an entry, When time passed is less than TTL, Then isStale returns false`() {
         val now = 1_000_000L
         val entry = CacheEntry(value = "x", savedAtMillis = now)
 
@@ -15,7 +15,7 @@ class CacheTest {
     }
 
     @Test
-    fun `entry after TTL is stale`() {
+    fun `Given an entry, When time passed is greater than TTL, Then isStale returns true`() {
         val now = 1_000_000L
         val entry = CacheEntry(value = "x", savedAtMillis = now)
 

@@ -72,6 +72,8 @@ class ArticleViewModel @Inject constructor(
     }
 
     internal fun getArticleDetail(id: String) {
+        onSearchQueryChanged("")
+
         viewModelScope.launch {
             when (val result = repository.getArticleDetail(id)) {
                 is com.dranoer.article.util.Result.Success -> {

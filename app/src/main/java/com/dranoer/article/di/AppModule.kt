@@ -27,6 +27,7 @@ abstract class AppModule {
 
     companion object {
         @Provides
+        @Singleton
         fun provideOkHttpClient() = OkHttpClient.Builder()
             .addInterceptor(MockInterceptor())
             .addInterceptor(HttpLoggingInterceptor().apply {

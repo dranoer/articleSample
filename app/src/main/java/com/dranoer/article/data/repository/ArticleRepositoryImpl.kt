@@ -9,7 +9,7 @@ import com.dranoer.article.util.Result
 import com.dranoer.article.util.toErrorType
 import com.dranoer.shared.cache.DEFAULT_TTL_MS
 import com.dranoer.shared.cache.KeyValueCache
-import com.dranoer.shared.cache.currentTimeMillis
+import com.dranoer.shared.currentTimeMillis
 import javax.inject.Inject
 
 class ArticleRepositoryImpl @Inject constructor(
