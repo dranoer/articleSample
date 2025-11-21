@@ -2,7 +2,7 @@
 <br>
 
 ## Architecture and Key Decisions
-The project uses a clean, two-module KMP architecture:
+The project uses two modules:
 - :app Module: This is the core of the application, containing all primary features and logic. It follows MVVM architecture written with Kotlin and Jetpack libraries. It uses Hilt for dependency injection and handles platform-specific tasks like background workers.
 - :shared Module: A Kotlin Multiplatform module whose single responsibility is providing cache.
 ```
@@ -37,7 +37,6 @@ The project uses a clean, two-module KMP architecture:
     └── shared
         ├── cache
         └── Platform.kt
-
 
 ```
 <br><br>
